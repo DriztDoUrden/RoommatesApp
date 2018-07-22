@@ -2,22 +2,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HttpService } from './http.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptorService } from './Authorization/token-interceptor.service';
-import { AuthService } from './Authorization/auth.service';
-import { Token } from '@angular/compiler';
-
+import { TokenInterceptorService } from './Authorization/TokenInterceptor.service';
+import { AuthService } from './Authorization/Authorization.service';
+import { LoginpanelComponent } from './loginpanel/loginpanel.component';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginpanelComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'login',
+        component: LoginpanelComponent
+      }
+    ])
   ],
-  providers: [AuthService, HttpService, {
+  providers: [AuthService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ApplicationUser } from './AppUser';
+import { ApplicationUser } from './ApplicationUser';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -12,6 +12,7 @@ export class AuthService {
   private _loginUrl = 'http://localhost:49778/token';
   private _values = 'http://localhost:49778/api/values';
 
+  currentUser = new ApplicationUser();
 
   registerUser(user: ApplicationUser): Observable<ApplicationUser> {
     return this.http.post<ApplicationUser>(this._registerUrl, user);
@@ -30,5 +31,10 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('userToken');
   }
-
+  getCurrentUser() {
+    return this.currentUser;
+  }
+  setCurrentUser(user: ApplicationUser) {
+    this.currentUser = user;
+  }
 }
