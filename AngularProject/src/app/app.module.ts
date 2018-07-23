@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './Authorization/TokenInterceptor.service';
 import { AuthService } from './Authorization/Authorization.service';
-import { LoginpanelComponent } from './loginpanel/loginpanel.component';
+import { LoginpanelComponent } from '../app/Authorization/loginpanel/loginpanel.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 @NgModule({

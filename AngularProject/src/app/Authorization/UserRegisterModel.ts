@@ -1,4 +1,4 @@
-export class ApplicationUser {
+export class UserLoginModel {
   Email: string;
   Password: string;
   ConfirmPassword: string;
