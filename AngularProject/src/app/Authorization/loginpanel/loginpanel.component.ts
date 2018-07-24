@@ -16,6 +16,7 @@ export class LoginpanelComponent implements OnInit {
 
   appUser = new UserLoginModel();
   loginMode = true;
+  isLoading = false;
 
   ngOnInit() {
   }
@@ -24,6 +25,7 @@ export class LoginpanelComponent implements OnInit {
     this.loginMode = !this.loginMode;
   }
   register() {
+    this.isLoading = true;
     const user: UserLoginModel = ({
       Email: this.appUser.Email,
       Password: this.appUser.Password,
@@ -37,21 +39,24 @@ export class LoginpanelComponent implements OnInit {
         console.log('Register failure');
         this.appUser.Password = '';
         this.appUser.ConfirmPassword = '';
+        this.isLoading = false;
       });
+    this.isLoading = false;
   }
   login() {
+    this.isLoading = true;
     const user: UserLoginModel = ({
       Email: this.appUser.Email,
       Password: this.appUser.Password,
       ConfirmPassword: this.appUser.ConfirmPassword
     });
-
     this.authService.userAuthorization(user).subscribe((data: any) => {
       localStorage.setItem('userToken', data.access_token);
       localStorage.setItem('currentUser', JSON.stringify(user));
       location.reload();
     },
       (err: HttpErrorResponse) => {
+        this.isLoading = false;
         console.log('Login failure');
         this.appUser.Password = '';
       });

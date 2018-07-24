@@ -8,16 +8,23 @@ import { AuthService } from './Authorization/Authorization.service';
 import { LoginpanelComponent } from '../app/Authorization/loginpanel/loginpanel.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from './Features/loading/loading.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatsInitPanelComponent } from './Flats/flats-init-panel/flats-init-panel.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginpanelComponent,
-    HomeComponent
+    HomeComponent,
+    LoadingComponent,
+    FlatsInitPanelComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot([
       {
         path: '',

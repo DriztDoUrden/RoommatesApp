@@ -1,0 +1,97 @@
+svg {
+    display: block;
+    font: 10.5em 'Raleway';
+    width: 560px;
+    -moz-user-select: none;
+    user-select: none;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+    stroke: #4D163D;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: #840037;
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: #BD0034;
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: #BD0034;
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: #FDB731;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
+
+  .section-content{
+    text-align: center;
+    padding-top:10px;
+  }
+  select {
+  color : initial !important;
+  }
+  #contact{
+    background:linear-gradient(rgb(0, 0, 0, 0.2),rgb(0, 0, 0, 0.0),rgb(0, 0, 0, 0.1));
+    font-family: 'Raleway';
+    width: 100vw;
+    color : #fff;
+  }
+  .contact-section{
+  }
+  .contact-section .col-md-6{
+    width: 50%;
+  }
+
+  .form-line{
+    border-right: 1px solid #B29999;
+  }
+
+  .form-group{
+    margin-top: 30px;
+  }
+  label{
+    font-size: 1.5em;
+    line-height: 1em;
+    font-weight: normal;
+  }
+  .form-control{
+    font-size: 1.3em;
+    color: #080808;
+  }
+  textarea.form-control {
+      height: 135px;
+    resize: none;/*disables the resize function*/
+     /* margin-top: px;*/
+  }
+
+  .submit{
+    font-size: 1.1em;
+    float: right;
+    width: 150px;
+    background-color: transparent;
+    color: #fff;
+
+  }

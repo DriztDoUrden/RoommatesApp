@@ -15,7 +15,10 @@ export class HomeComponent implements OnInit {
 
   isActiveUser = localStorage.getItem('currentUser');
   currentUser: ApplicationUser;
+  isLoading = false;
+
   logout() {
+    this.isLoading = true;
     localStorage.setItem('userToken', null);
     localStorage.setItem('currentUser', 'none');
     location.reload();

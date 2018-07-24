@@ -67,7 +67,8 @@
 }
 
 .form-signin #inputEmail,
-.form-signin #inputPassword {
+.form-signin #inputPassword,
+.form-signin #inputConfirmedPassword {
   direction: ltr;
   height: 44px;
   font-size: 16px;
