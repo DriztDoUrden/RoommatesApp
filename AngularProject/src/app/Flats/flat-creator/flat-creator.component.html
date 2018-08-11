@@ -1,0 +1,24 @@
+<div class="container">
+  <app-loading *ngIf="isLoading==true"></app-loading>
+  <div class="card card-container">
+    <h2 style="text-align:center;">Flat Creator</h2>
+    <img id="profile-img" class="profile-img-card" src="../../../assets/images/wrench.png" />
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-creator">
+      <input [(ngModel)]="flatBindingModel.FlatName" [ngModelOptions]="{standalone:true}" id="inputFlatName " class="form-control"
+        placeholder="Flat name " required autofocus>
+      <p></p>
+      <input [(ngModel)]="flatBindingModel.Address" [ngModelOptions]="{standalone:true}" id="inputAddress " class="form-control "
+        placeholder="Address " required>
+      <p></p>
+      <input [(ngModel)]="flatBindingModel.City" [ngModelOptions]="{standalone:true}" id="inputCity " class="form-control " placeholder="City "
+        required>
+      <p></p>
+      <button class="btn btn-lg btn-primary btn-block btn-signin " type="submit" (click)="createFlat()">Create!</button>
+    </form>
+    <!-- /form -->
+    <div class="error ">
+    </div>
+  </div>
+  <!-- /card-container -->
+</div>

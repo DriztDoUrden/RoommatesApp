@@ -11,8 +11,11 @@ namespace FlatAPI.Models.Domain
         [Key]
         public int Id { get; set; }
         [Required]
-        public int Name { get; set; }
+        public string FlatName { get; set; }
         [Required]
         public string Address { get; set; }
+        [Required]
+        public string City { get; set; }
+        public string FlatAvatar { get; set; }
     }
 }

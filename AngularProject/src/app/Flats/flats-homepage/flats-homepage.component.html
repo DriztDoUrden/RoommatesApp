@@ -1,0 +1,25 @@
+<app-loading *ngIf="isLoading==true"></app-loading>
+<nav class="navbar navbar-expand-md barBackground" style="min-height: 52px !important;">
+  <div class="navbar-collapse collapse w-100 ">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" (click)="homePage()">HomePage</a>
+      </li>
+    </ul>
+  </div>
+  <div class="mx-auto order-0">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a *ngIf="currentUser!==null">Hi {{(currentUser)?.Email}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>

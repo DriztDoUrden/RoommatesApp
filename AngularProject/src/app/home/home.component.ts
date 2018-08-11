@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../Authorization/Authorization.service';
 import { ApplicationUser } from '../Models/ApplicationUser';
-import { Observable } from '../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,8 @@ import { Observable } from '../../../node_modules/rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
-
   isActiveUser = localStorage.getItem('currentUser');
   currentUser: ApplicationUser;
   isLoading = false;
@@ -21,11 +21,10 @@ export class HomeComponent implements OnInit {
     this.isLoading = true;
     localStorage.setItem('userToken', null);
     localStorage.setItem('currentUser', 'none');
-    location.reload();
+    this.router.navigate(['']);
+    this.isLoading = false;
   }
   ngOnInit() {
-    if (this.isActiveUser !== 'none') {
-      this.currentUser = JSON.parse(this.isActiveUser);
-    }
+    this.authService.checkAccess();
   }
 }

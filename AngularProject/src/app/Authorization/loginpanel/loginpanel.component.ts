@@ -3,6 +3,8 @@ import { UserLoginModel } from '../UserRegisterModel';
 import { AuthService } from '../Authorization.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApplicationUser } from '../../Models/ApplicationUser';
 
 @Component({
   selector: 'app-loginpanel',
@@ -11,18 +13,20 @@ import { EventEmitter } from '@angular/core';
 })
 export class LoginpanelComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   appUser = new UserLoginModel();
   loginMode = true;
   isLoading = false;
+  httpResponse;
 
   ngOnInit() {
   }
 
   changeMode() {
     this.loginMode = !this.loginMode;
+    this.httpResponse = null;
   }
   register() {
     this.isLoading = true;
@@ -33,7 +37,6 @@ export class LoginpanelComponent implements OnInit {
     });
     this.authService.registerUser(user).subscribe(data => {
       console.log(data);
-      location.reload();
     },
       (err: HttpErrorResponse) => {
         console.log('Register failure');
@@ -53,11 +56,14 @@ export class LoginpanelComponent implements OnInit {
     this.authService.userAuthorization(user).subscribe((data: any) => {
       localStorage.setItem('userToken', data.access_token);
       localStorage.setItem('currentUser', JSON.stringify(user));
-      location.reload();
+      this.authService.setAuthorizarion();
+      this.isLoading = false;
+      this.router.navigate(['']);
     },
       (err: HttpErrorResponse) => {
         this.isLoading = false;
         console.log('Login failure');
+        this.httpResponse = err.error.error_description;
         this.appUser.Password = '';
       });
   }

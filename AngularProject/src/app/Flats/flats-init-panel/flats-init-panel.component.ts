@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../Authorization/Authorization.service';
+import { ResidentService } from '../resident.service';
+import { ApplicationUser } from '../../Models/ApplicationUser';
 
 @Component({
   selector: 'app-flats-init-panel',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlatsInitPanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService, private residentService: ResidentService) { }
 
-  ngOnInit() {
+  isLoading = false;
+
+  redirectToFlatCreator() {
+    this.router.navigate(['flatCreator']);
+  }
+  redirectToFlatSearch() {
+    this.router.navigate(['flatSearch']);
+  }
+  checkUserFlat() {
+
   }
 
+  ngOnInit() {
+    this.isLoading = true;
+    this.authService.checkAccess();
+    let hasFlat = false;
+    this.residentService.checkResidentHasFlat().subscribe((data: any) => {
+      hasFlat = data;
+      if (hasFlat) {
+        console.log('HEHE');
+        this.router.navigate(['homepage']);
+        this.isLoading = false;
+      }
+    });
+    setTimeout(() => { this.isLoading = false; }, 1000);
+  }
 }

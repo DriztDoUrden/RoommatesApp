@@ -14,7 +14,7 @@ namespace FlatAPI.Models
             : base("FlatDatabase", throwIfV1Schema: false)
         {
         }
-        public DbSet<Flat> Flat { get; set; }
+        public DbSet<Flat> Flats { get; set; }
         public DbSet<Residents> Residents { get; set; }
         public static ApplicationDbContext Create()
         {

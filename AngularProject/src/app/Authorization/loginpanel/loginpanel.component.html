@@ -15,9 +15,12 @@
     <!-- /form -->
     <div style="padding-top:5px; font-size:14px" class="bottom text-left">
       New here?
-      <a href="#">
+      <a>
         <b style="color: rgb(104, 145, 162);" (click)="changeMode()">Join Us</b>
       </a>
+    </div>
+    <div class="error">
+      {{httpResponse}}
     </div>
   </div>
   <!-- /card-container -->
@@ -40,6 +43,9 @@
           class="form-control" placeholder="Confirm password" required>
         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="register()">Sign up</button>
       </form>
+    </div>
+    <div class="error">
+      {{httpResponse}}
     </div>
     <!-- /card-container -->
   </div>

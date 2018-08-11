@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
@@ -22,6 +23,7 @@ namespace FlatAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.EnableCors();
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
