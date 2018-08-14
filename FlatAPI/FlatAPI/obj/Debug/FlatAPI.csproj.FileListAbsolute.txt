@@ -127,7 +127,6 @@ C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.cspro
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.csprojResolveAssemblyReference.cache
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\Microsoft.Owin.Cors.dll
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\System.Web.Cors.dll
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\System.Web.Http.Cors.dll
@@ -159,3 +158,8 @@ C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migra
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.RenameIDs.resources
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.RemovingIDs.resources
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.Addedflatavatarfield.resources
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.Addedadvertisementtable.resources
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.ReworkofAdvertisementModel.resources
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.ChangeofContentColumnsize.resources
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.csprojResolveAssemblyReference.cache
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.AddUsertoAdvertisements.resources

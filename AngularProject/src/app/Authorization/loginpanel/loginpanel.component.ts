@@ -56,7 +56,7 @@ export class LoginpanelComponent implements OnInit {
     this.authService.userAuthorization(user).subscribe((data: any) => {
       localStorage.setItem('userToken', data.access_token);
       localStorage.setItem('currentUser', JSON.stringify(user));
-      this.authService.setAuthorizarion();
+      this.authService.setAuthorization();
       this.isLoading = false;
       this.router.navigate(['']);
     },

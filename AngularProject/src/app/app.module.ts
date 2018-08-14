@@ -15,6 +15,9 @@ import { FlatCreatorComponent } from './Flats/flat-creator/flat-creator.componen
 import { FlatService } from './Flats/flat.service';
 import { FlatsHomepageComponent } from './Flats/flats-homepage/flats-homepage.component';
 import { FlatSearchComponent } from './Flats/flat-search/flat-search.component';
+import { NoticeComponent } from './Notice/notice.component';
+import { NoticeService } from './Notice/notice.service';
+import { FeesComponent } from './fees/fees.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { FlatSearchComponent } from './Flats/flat-search/flat-search.component';
     FlatsInitPanelComponent,
     FlatCreatorComponent,
     FlatsHomepageComponent,
-    FlatSearchComponent
+    FlatSearchComponent,
+    NoticeComponent,
+    FeesComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,14 @@ import { FlatSearchComponent } from './Flats/flat-search/flat-search.component';
       {
         path: 'flatSearch',
         component: FlatSearchComponent
+      },
+      {
+        path: 'notices',
+        component: NoticeComponent
+      },
+      {
+        path: 'fees',
+        component: FeesComponent
       }
     ])
   ],
@@ -59,7 +72,7 @@ import { FlatSearchComponent } from './Flats/flat-search/flat-search.component';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }, FlatService],
+  }, FlatService, NoticeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

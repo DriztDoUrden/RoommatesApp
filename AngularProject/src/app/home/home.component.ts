@@ -17,13 +17,6 @@ export class HomeComponent implements OnInit {
   currentUser: ApplicationUser;
   isLoading = false;
 
-  logout() {
-    this.isLoading = true;
-    localStorage.setItem('userToken', null);
-    localStorage.setItem('currentUser', 'none');
-    this.router.navigate(['']);
-    this.isLoading = false;
-  }
   ngOnInit() {
     this.authService.checkAccess();
   }

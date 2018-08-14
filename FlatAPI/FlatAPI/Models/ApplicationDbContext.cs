@@ -16,6 +16,8 @@ namespace FlatAPI.Models
         }
         public DbSet<Flat> Flats { get; set; }
         public DbSet<Residents> Residents { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

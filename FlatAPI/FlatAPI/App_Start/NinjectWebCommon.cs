@@ -46,6 +46,7 @@ namespace FlatAPI.App_Start
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
             kernel.Bind<IFlatsRepository>().To<FlatRepository>();
             kernel.Bind<IResidentsRepository>().To<ResidentsRepository>();
+            kernel.Bind<IAdvertisementRepository>().To<AdvertisementRepository>();
         }
     }
 }

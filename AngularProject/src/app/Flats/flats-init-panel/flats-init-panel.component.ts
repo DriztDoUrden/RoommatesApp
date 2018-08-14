@@ -32,11 +32,11 @@ export class FlatsInitPanelComponent implements OnInit {
     this.residentService.checkResidentHasFlat().subscribe((data: any) => {
       hasFlat = data;
       if (hasFlat) {
-        console.log('HEHE');
         this.router.navigate(['homepage']);
         this.isLoading = false;
       }
     });
-    setTimeout(() => { this.isLoading = false; }, 1000);
+    setTimeout(() => { this.isLoading = false; }, 1500);
+
   }
 }

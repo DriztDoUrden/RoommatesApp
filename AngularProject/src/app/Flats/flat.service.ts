@@ -9,9 +9,9 @@ import { ResidentModel } from '../Models/ResidentModel';
 export class FlatService implements OnInit {
 
 
-  private _createFlat = 'http://localhost:49778/api/Flats/CreateFlat';
-  private _joinFlat = 'http://localhost:49778/api/Flats/JoinToFlat';
-  private _searchFlat = 'http://localhost:49778/api/Flats/SearchFlat';
+  private _createFlat = 'http://localhost:51287/api/Flats/CreateFlat';
+  private _joinFlat = 'http://localhost:51287/api/Flats/JoinToFlat';
+  private _searchFlat = 'http://localhost:51287/api/Flats/SearchFlat';
 
 
   constructor(private http: HttpClient) { }

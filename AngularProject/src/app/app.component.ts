@@ -16,19 +16,8 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private cd: ChangeDetectorRef) {
   }
   currentUser: ApplicationUser;
-  isLoading = false;
-  isActive = false;
 
-  logout() {
-    this.isLoading = true;
-    localStorage.setItem('userToken', null);
-    localStorage.setItem('currentUser', 'none');
-    this.router.navigate(['login']);
-    this.isLoading = false;
-  }
-  homePage() {
-    this.router.navigate(['']);
-  }
   ngOnInit() {
+    this.authService.checkAccess();
   }
 }

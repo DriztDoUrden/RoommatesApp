@@ -16,6 +16,8 @@ namespace FlatAPI.App_Start
             CreateMap<FlatViewModel, Flat>();
             CreateMap<Residents, ResidentsViewModel>();
             CreateMap<ResidentsViewModel, Residents>();
+            CreateMap<Advertisement, AdvertisementViewModel>();
+            CreateMap<AdvertisementViewModel, Advertisement>();
         }
     }
 }

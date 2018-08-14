@@ -56,6 +56,10 @@
     <Reference Include="Microsoft.Owin.Cors, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Cors.2.1.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -98,6 +102,9 @@
     <Reference Include="System.Web.Http.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.6\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -109,9 +116,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
@@ -119,9 +123,6 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -267,6 +268,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\NoticesController.cs" />
     <Compile Include="Controllers\FlatsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResidentsController.cs" />
@@ -310,19 +312,39 @@
     <Compile Include="Migrations\201808071818304_Added flat avatar field.Designer.cs">
       <DependentUpon>201808071818304_Added flat avatar field.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808120805077_Added advertisement table.cs" />
+    <Compile Include="Migrations\201808120805077_Added advertisement table.Designer.cs">
+      <DependentUpon>201808120805077_Added advertisement table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808120946005_Rework of Advertisement Model.cs" />
+    <Compile Include="Migrations\201808120946005_Rework of Advertisement Model.Designer.cs">
+      <DependentUpon>201808120946005_Rework of Advertisement Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121131090_Change of Content-Column size.cs" />
+    <Compile Include="Migrations\201808121131090_Change of Content-Column size.Designer.cs">
+      <DependentUpon>201808121131090_Change of Content-Column size.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121630379_Add User to Advertisements.cs" />
+    <Compile Include="Migrations\201808121630379_Add User to Advertisements.Designer.cs">
+      <DependentUpon>201808121630379_Add User to Advertisements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Domain\Advertisement.cs" />
     <Compile Include="Models\Domain\ApplicationUser.cs" />
     <Compile Include="Models\Domain\Flat.cs" />
     <Compile Include="Models\Domain\Residents.cs" />
+    <Compile Include="Models\DTO\AdvertisementViewModel.cs" />
     <Compile Include="Models\DTO\FlatViewModel.cs" />
     <Compile Include="Models\DTO\ResidentsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repositories\IRepository\IAdvertisementRepository.cs" />
     <Compile Include="Repositories\IRepository\IFlatsRepository.cs" />
     <Compile Include="Repositories\IRepository\IResidentsRepository.cs" />
+    <Compile Include="Repositories\Repository\AdvertisementRepository.cs" />
     <Compile Include="Repositories\Repository\FlatRepository.cs" />
     <Compile Include="Repositories\Repository\ResidentsRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -370,7 +392,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -429,6 +453,18 @@
     <EmbeddedResource Include="Migrations\201808071818304_Added flat avatar field.resx">
       <DependentUpon>201808071818304_Added flat avatar field.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808120805077_Added advertisement table.resx">
+      <DependentUpon>201808120805077_Added advertisement table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808120946005_Rework of Advertisement Model.resx">
+      <DependentUpon>201808120946005_Rework of Advertisement Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121131090_Change of Content-Column size.resx">
+      <DependentUpon>201808121131090_Change of Content-Column size.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121630379_Add User to Advertisements.resx">
+      <DependentUpon>201808121630379_Add User to Advertisements.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -446,9 +482,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49778</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49778/</IISUrl>
+          <IISUrl>http://localhost:51287/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
