@@ -8,6 +8,7 @@ using System.Transactions;
 using System.Web;
 using System.Web.Http;
 using AutoMapper;
+using FlatAPI.Models;
 using FlatAPI.Models.Domain;
 using FlatAPI.Models.DTO;
 using FlatAPI.Repositories.IRepository;
@@ -34,21 +35,14 @@ namespace FlatAPI.Controllers
         [Route("CreateFlat")]
         public async Task<IHttpActionResult> CreateFlat(FlatViewModel model)
         {
-            ApplicationUser user = await HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
             var entity = Mapper.Map<FlatViewModel, Flat>(model);
-            var resident = new Residents
-            {
-                Flat = entity,
-                User = user
-            };
-            using (TransactionScope scope = new TransactionScope())
+            try
             {
                 _flatContext.CreateFlat(entity);
-                _flatContext.SaveChanges(); // necessary, to generate ID for entity
-                _flatContext.JoinToFlat(resident);
-                _flatContext.SaveChanges();
-                scope.Complete();
+            }
+            catch(ValidationException ex)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, ex.ListOfErrors));
             }
             return Ok(entity);
         }
@@ -56,22 +50,13 @@ namespace FlatAPI.Controllers
         [Route("JoinToFlat")]
         public async Task<IHttpActionResult> JoinToFlat([FromBody]int flatID)
         {
-            ApplicationUser user = await HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
-            var flat = _flatContext.GetFlatByID(flatID);
-            var model = new ResidentsViewModel
+            var entity = new Residents
             {
-                Flat = flat
+                Flat_Id = flatID
             };
-            var entity = Mapper.Map<ResidentsViewModel, Residents>(model);
-            entity.User = user;
+            _flatContext.JoinToFlat(entity);
+            _flatContext.SaveChanges();
 
-            using (TransactionScope scope = new TransactionScope())
-            {
-                _flatContext.JoinToFlat(entity);
-                _flatContext.SaveChanges();
-                scope.Complete();
-            }
             return Ok();
         }
         [HttpPost]
@@ -83,7 +68,6 @@ namespace FlatAPI.Controllers
             return Ok(flatsVM);
         }
 
-        // GET api/values/5
         public string Get(int id)
         {
             return "value";

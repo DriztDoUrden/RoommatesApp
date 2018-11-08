@@ -1,0 +1,60 @@
+<app-flats-homepage></app-flats-homepage>
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="currentMode==0;else creator">
+  <div class="legend">
+    <div class="legendHeader">
+      Legend
+    </div>
+    <div *ngFor="let user of FlatMembers" class="userColor" [ngStyle]="{'background-color': 'rgba('+ user.Color.R +','+ user.Color.G +','+ user.Color.B +','+ user.Color.Alpha +')'}">
+      {{user.Email}}
+    </div>
+    <button (click)="enableCreator()" class="btn createSchedule">
+      Add new schedule
+    </button>
+  </div>
+  <div class="calendar">
+    <div class="header">
+      <button (click)="GetPreviousMonth()" class="btn-lg btn-danger" style="float:left; width:80px;text-align:center;">
+        Previous
+      </button>
+      {{month.MonthName}} <small>{{GetCurrentYear}}</small>
+      <button (click)="GetNextMonth()" class="btn-lg btn-danger" style="float:right;width:80px;text-align:center;">
+        Next
+      </button>
+    </div>
+    <div *ngFor="let i of days" class="days">
+      {{i}}
+    </div>
+    <div *ngFor="let day of numberOfDays" class="day">
+    </div>
+    <div *ngFor="let day of month.Days" class="day">
+      {{day.DateNumber}}
+      <div *ngIf="day.Color !== null;else emptyDay" class="triangle" [ngStyle]="{'border-bottom-color': 'rgba('+ day.Color.R +','+ day.Color.G +','+ day.Color.B +','+ day.Color.Alpha +')'}">
+      </div>
+      <ng-template #emptyDay>
+        <div class="triangle" style="border-bottom-color:transparent;">
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<ng-template #creator>
+  <div class="EditPanel">
+    <h2 class="headerPanel">Cleaning Schedule Creator</h2>
+    <img class="headerImg" src="../../../assets/images/cleaning.png " />
+    <div style="margin-top:3vh">
+      <h2 class="inputText">From:</h2> <input [(ngModel)]="CleaningScheduleBindingModel.From " [ngModelOptions]="{standalone:true} "
+        class="inputPanel" type="Date" required>
+    </div>
+    <div style="margin-top:3vh">
+      <h2 class="inputText">To:</h2> <input [(ngModel)]="CleaningScheduleBindingModel.To " [ngModelOptions]="{standalone:true} "
+        class="inputPanel" type="Date" required>
+    </div>
+    <div style="margin-top:3vh">
+      <h2 class="inputText">User:</h2><select id="userPicker" style="height:4vh" class="inputPanel">
+        <option *ngFor="let user of FlatMembers">{{user.Email}}</option>
+      </select>
+    </div>
+    <button class="btn btn-success sendBtn" (click)="CreateSchedule()">Create schedule</button>
+  </div>
+</ng-template>

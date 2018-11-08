@@ -1,4 +1,5 @@
-﻿using FlatAPI.Models.DTO;
+﻿using FlatAPI.Models.Domain;
+using FlatAPI.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace FlatAPI.Repositories.IRepository
     {
         ResidentsViewModel GetResidentInfo(string residentID);
         bool CheckResidentFlat(string residentID);
+        List<ApplicationUser> GetCurrentFlatMembers();
     }
 }

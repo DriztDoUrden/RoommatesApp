@@ -1,0 +1,43 @@
+<app-loading *ngIf="isLoading==true"></app-loading>
+<app-fees></app-fees>
+<div style="text-align:center;">
+  <div *ngIf="editorMode==false;else editor" class="utilitiesTable" style="margin-right:10vw;">
+    <div class="panel-heading" style="border-radius:10px;height:8vh;">Bills panel
+      <button (click)="editorModeClick()" class="btn btn-danger addUtylityBtn">New Bill</button>
+    </div>
+    <div class="panel-body" style="font-family:arial;">
+      <table class="table" style="text-align:center; color:white;">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th *ngFor="let utility of utilitiesList">{{utility.Name}}</th>
+            <th>Sum</th>
+            <th>To pay</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let bill of billsList">
+          <td>{{bill.UtilitiesMonth}}</td>
+          <td *ngFor="let utility of bill.Utilities">{{utility.Quantity}}</td>
+          <td>{{sumUp(bill)}}$</td>
+          <td>{{toPay(sumUp(bill))}}$</td>
+          <a (click)="removeBill(bill) " style="float:left;margin-top:8px;color:red;font-weight:bold;cursor: pointer; ">X</a>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #editor>
+  <div class="editor" style="font-family:arial;">
+    <div class="panel-heading" style="text-align:center;border-radius:10px;height:8vh;">Creator of utilities
+    </div>
+    <div class="panel-body" style=" text-align:center; ">
+      <input *ngFor="let utility of utilitiesBindingModel.Utilities" [(ngModel)]="utility.Quantity" [ngModelOptions]="{standalone:true} "
+        class="inputField" placeholder="{{utility.UtilitiesRates.Name}}" style="margin-top:5px;" required autofocus>
+      <input [(ngModel)]="utilitiesBindingModel.UtilitiesDate" style="margin-top:5px;" [ngModelOptions]="{standalone:true} "
+        class="inputField" type="month" required autofocus>
+      <br>
+      <button class="btn btn-success addUtylityBtn" (click)="createNewBill(utilitiesBindingModel)" style="margin-top:25px;">Create</button>
+    </div>
+  </div>
+
+</ng-template>

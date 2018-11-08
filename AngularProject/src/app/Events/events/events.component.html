@@ -1,0 +1,47 @@
+<app-flats-homepage></app-flats-homepage>
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="currentMode!==1;else creatorPanel">
+  <div class="panelHeader">
+    Events List
+  </div>
+  <div class="panel scrollbar">
+    <div *ngFor="let event of EventsList; let i = index">
+      <div class="panelDate" [ngClass]="{'panelDatePrim': i%2==1 }">
+        <div class="number">
+          {{getDayNumber(event.Date)}}
+        </div>
+        <div class="month">
+          {{getMonthName(event.Date)}}
+        </div>
+      </div>
+      <div class="panelContent">
+        <h1 style="text-align:center">{{event.Title}}</h1>
+        <p>{{event.Content}}</p>
+      </div>
+      <div style="height:10px;">
+      </div>
+    </div>
+  </div>
+  <div style="margin-left:59.5vw; position: absolute;">
+    <button (click)="enableCreator()" class="btn btn-danger createEvent">Create event</button>
+  </div>
+</div>
+<ng-template #creatorPanel>
+  <div class="card card-container">
+    <h2 style="text-align:center; ">Events Creator</h2>
+    <img id="profile-img " class="profile-img-card " src="../../../assets/images/wrench.png " />
+    <p id="profile-name " class="profile-name-card "></p>
+    <form class="form-creator ">
+      <input [(ngModel)]="EventBindingModel.Title " [ngModelOptions]="{standalone:true} " class="form-control "
+        placeholder="Title " required autofocus>
+      <p></p>
+      <textarea [(ngModel)]="EventBindingModel.Content " [ngModelOptions]="{standalone:true} " class="form-control contentArea "
+        placeholder="Content " required></textarea>
+      <p></p>
+      <input [(ngModel)]="EventBindingModel.Date " [ngModelOptions]="{standalone:true} " class="form-control " type="date"
+        required>
+      <p></p>
+      <button class="btn btn-lg btn-success btn-block" type="button " (click)="CreateEvent() ">Create!</button>
+    </form>
+  </div>
+</ng-template>

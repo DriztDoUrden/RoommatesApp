@@ -17,8 +17,9 @@ namespace FlatAPI.Models.DTO
         [Required]
         public string Author { get; set; }
         [Required]
-        public Flat Flat { get; set; }
-        public ApplicationUser User { get; set; }
+        public int Flat_Id { get; set; }
+        [Required]
+        public string User_Id { get; set; }
 
     }
 }

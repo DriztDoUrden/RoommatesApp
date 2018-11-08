@@ -5,74 +5,45 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './Authorization/TokenInterceptor.service';
 import { AuthService } from './Authorization/Authorization.service';
-import { LoginpanelComponent } from './Authorization/loginpanel/loginpanel.component';
 import { HomeComponent } from './home/home.component';
-import { RouterModule } from '@angular/router';
-import { LoadingComponent } from './Features/loading/loading.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FlatsInitPanelComponent } from './Flats/flats-init-panel/flats-init-panel.component';
-import { FlatCreatorComponent } from './Flats/flat-creator/flat-creator.component';
-import { FlatService } from './Flats/flat.service';
-import { FlatsHomepageComponent } from './Flats/flats-homepage/flats-homepage.component';
-import { FlatSearchComponent } from './Flats/flat-search/flat-search.component';
-import { NoticeComponent } from './Notice/notice.component';
-import { NoticeService } from './Notice/notice.service';
-import { FeesComponent } from './fees/fees.component';
+import { AuthorizationModule } from './Authorization/Authorization.module';
+import { FlatsModule } from './Flats/Flats.module';
+import { NoticesModule } from './Notice/Notices.module';
+import { FeesModule } from './fees/Fees.module';
+import { AppRoutingModule } from './app.routing';
+import { GlobalService } from './Features/global.service';
+import { ValidatorService } from './Features/validator/validator.service';
+import { CleaningModule } from './Cleaning-Schedule/Cleaning.module';
+import { GrowlModule } from 'primeng/primeng';
+import { ChatModule } from './Chat/Chat.module';
+import { EventsComponent } from './Events/events/events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginpanelComponent,
-    HomeComponent,
-    LoadingComponent,
-    FlatsInitPanelComponent,
-    FlatCreatorComponent,
-    FlatsHomepageComponent,
-    FlatSearchComponent,
-    NoticeComponent,
-    FeesComponent
+    HomeComponent
   ],
   imports: [
+    AuthorizationModule,
+    FlatsModule,
+    FeesModule,
+    NoticesModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomeComponent
-      },
-      {
-        path: 'login',
-        component: LoginpanelComponent
-      },
-      {
-        path: 'homepage',
-        component: FlatsHomepageComponent
-      },
-      {
-        path: 'flatCreator',
-        component: FlatCreatorComponent
-      },
-      {
-        path: 'flatSearch',
-        component: FlatSearchComponent
-      },
-      {
-        path: 'notices',
-        component: NoticeComponent
-      },
-      {
-        path: 'fees',
-        component: FeesComponent
-      }
-    ])
+    AppRoutingModule,
+    CleaningModule,
+    GrowlModule,
+    ChatModule
   ],
+  exports: [],
   providers: [AuthService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }, FlatService, NoticeService],
+  }, GlobalService, ValidatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

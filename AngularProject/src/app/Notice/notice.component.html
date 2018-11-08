@@ -1,7 +1,8 @@
 <app-flats-homepage></app-flats-homepage>
-<button [ngClass]="{'disabled': listOfNotices.length>3}" class="btn btn-danger addNotice" (click)="creatorMode=true">New notice</button>
+<button [ngClass]="{'disabled': listOfNotices.length>3}" class="btn btn-danger addNotice" (click)="currentMode=1">New
+  notice</button>
 
-<div *ngIf="creatorMode===false; else creatorPanel" class="container" style="max-width:80vw;max-height:80vh; margin-top:5vh">
+<div *ngIf="currentMode==0; else creatorPanel" class="container" style="max-width:80vw;max-height:80vh; margin-top:5vh">
   <div *ngIf="listOfNotices.length<1" class="emptyList">
     List of notices is empty...
   </div>
@@ -10,8 +11,8 @@
       <div style="display: inline-block;width:180px;">
         <h4 class=" card-title " style="float:left">#{{i+1}}</h4>
         <h5 style="float:left;margin-left:125px;">
-          <img *ngIf="notice.User.Email==currentUser.Email" class="card-title removeNotice" (click)="enableEditor(notice)" style="width:17px;height:17px;margin-top:2px;"
-            src="../../assets/images/wrench.png " />
+          <img *ngIf="notice.User_Id==currentUser.Id" class="card-title removeNotice" (click)="enableEditor(notice)"
+            style="width:17px;height:17px;margin-top:2px;" src="../../assets/images/wrench.png " />
         </h5>
         <h4 class="card-title removeNotice" (click)="removeNotice(notice)" style="float:left;margin-left:8px;">X</h4>
       </div>
@@ -32,18 +33,20 @@
       <p id="profile-name " class="profile-name-card "></p>
       <form class="form-creator ">
         <input [(ngModel)]="noticeBindingModel.Title " [ngModelOptions]="{standalone:true} " id="inputFlatName
-        " class="form-control " placeholder="Title " required autofocus>
+        "
+          class="form-control " placeholder="Title " required autofocus>
         <p></p>
         <textarea [(ngModel)]="noticeBindingModel.Content " [ngModelOptions]="{standalone:true} " id="inputAddress
-        " class="form-control contentArea " placeholder="Content " required></textarea>
+        "
+          class="form-control contentArea " placeholder="Content " required></textarea>
         <p></p>
         <input [(ngModel)]="noticeBindingModel.Author " [ngModelOptions]="{standalone:true} " id="inputCity " class="form-control "
           placeholder="Author " required>
         <p></p>
-        <div *ngIf="editMode==false">
+        <div *ngIf="currentMode==1">
           <button class="btn btn-lg btn-success btn-block" type="button " (click)="createNotice() ">Create!</button>
         </div>
-        <div *ngIf="editMode==true;">
+        <div *ngIf="currentMode==2;">
           <button class="btn btn-lg btn-warning btn-block" type="button " (click)="editNotice() ">Edit!</button>
         </div>
       </form>

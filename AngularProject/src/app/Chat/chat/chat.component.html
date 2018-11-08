@@ -1,0 +1,16 @@
+<app-flats-homepage></app-flats-homepage>
+<app-loading *ngIf="isLoading==true;else create "></app-loading>
+<div class="chat">
+    <div class='chatHeader'>Chat</div>
+    <div style="height:10px;"></div>
+    <div style="color:rgba(255, 255, 255, 0.8);margin-left:1vw;" *ngFor="let message of messagesList">
+        <p style="color:red; display:inline;">{{message.UserName}}</p>
+        :
+        {{message.Content}}
+        <br>
+    </div>
+    <textarea [(ngModel)]="messageModel.Content" [ngModelOptions]="{standalone:true} " id="inputMessage" class="form-control"
+        placeholder="Type message..." (keydown)="onKeydown($event)" style="margin-top:45.8vh;max-height:3.5vh;min-height:3.5vh;position:absolute;bottom:0; width:58vw; height:3.5vh;"
+        required></textarea>
+    <button class="btn btn-danger" (click)="sendMessage()" style="width:5vw; position:absolute;bottom:0;right:0;height:3.5vh;">SEND</button>
+</div>

@@ -1,0 +1,9 @@
+<div id="warningIcon" *ngIf="listOfErrors != null">
+  <img (mouseenter)="setMessageActive(true)" (mouseleave)="setMessageActive(false)" src="../../../assets/images/warning.png" />
+</div>
+
+<div *ngIf="isErrorMessageActive==true" class="warningMessage">
+  <small *ngFor="let error of listOfErrors">
+    - {{error}} <br>
+  </small>
+</div>

@@ -1,0 +1,9 @@
+.warningMessage{
+  display:inline-block;
+  width:100%;
+  color:rgb(250, 6, 6);
+  background:linear-gradient(rgb(255, 255, 255, 0.8),rgb(255, 255, 255, 0.3),rgb(255, 255, 255, 0.3),rgb(255, 255, 255, 0.8));
+  border-radius: 5px;
+  text-align:left !important;
+  margin-top:5px;
+}

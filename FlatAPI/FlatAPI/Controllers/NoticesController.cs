@@ -31,19 +31,16 @@ namespace FlatAPI.Controllers
 
         [HttpPost]
         [Route("CreateNotice")]
-        public async Task<IHttpActionResult> CreateNotice(AdvertisementViewModel model)
+        public IHttpActionResult CreateNotice(AdvertisementViewModel model)
         {
-            ApplicationUser user = await HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            model.User = user;
             _advertisementContext.CreateNotice(model);
             return Ok();
         }
         [HttpGet]
         [Route("GetNotices")]
-        public async Task<IHttpActionResult> GetNotices()
+        public IHttpActionResult GetNotices()
         {
-            ApplicationUser user = await HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            var notices = _advertisementContext.GetNotices(user.Id);
+            var notices = _advertisementContext.GetNotices();
             return Ok(notices);
         }
         [HttpPost]

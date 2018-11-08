@@ -3,8 +3,10 @@ import { NoticeModel } from '../Models/NoticeModel';
 import { NoticeService } from './notice.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../Authorization/Authorization.service';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { ApplicationUser } from '../Models/ApplicationUser';
+import { GlobalService } from '../Features/global.service';
+import { ModeEnum } from '../Features/ModeEnum';
 
 @Component({
   selector: 'app-notice',
@@ -14,80 +16,84 @@ import { ApplicationUser } from '../Models/ApplicationUser';
 export class NoticeComponent implements OnInit {
 
   listOfNotices = new Array<NoticeModel>();
-  isLoading = false;
   noticeBindingModel = new NoticeModel();
-  creatorMode = false;
-  editMode = false;
   currentUser: ApplicationUser;
 
-  constructor(private _noticeService: NoticeService, private _authService: AuthService, private _router: Router) { }
+  constructor(private _noticeService: NoticeService, private _authService: AuthService, private _router: Router,
+    private _global: GlobalService) { }
 
   createNotice() {
-    this.isLoading = true;
+    this._global.isLoading = true;
     this._noticeService.createNotice(this.noticeBindingModel).subscribe((result: any) => {
-      this.isLoading = false;
-      this.creatorMode = false;
+      this._global.isLoading = false;
       this.getNotices();
       this.noticeBindingModel = new NoticeModel();
-      this._router.navigate(['homepage']);
+      this._router.navigate(['notices']);
     },
       (err: HttpErrorResponse) => {
-        this.isLoading = false;
+        this._global.isLoading = false;
         console.log(err);
       });
 
   }
   enableEditor(notice: NoticeModel) {
-    this.creatorMode = true;
-    this.editMode = true;
+    this._global.currentMode = ModeEnum.Edit;
     this.noticeBindingModel = notice;
   }
   editNotice() {
-    this.isLoading = true;
+    this._global.isLoading = true;
     this._noticeService.editNotice(this.noticeBindingModel).subscribe((result: any) => {
-      this.isLoading = false;
-      this.editMode = false;
-      this.creatorMode = false;
+      this._global.isLoading = false;
+      this._global.currentMode = ModeEnum.Buffer;
       this.getNotices();
       this.noticeBindingModel = new NoticeModel();
-      this._router.navigate(['homepage']);
+      this._router.navigate(['notices']);
     },
       (err: HttpErrorResponse) => {
-        this.isLoading = false;
+        this._global.isLoading = false;
         console.log(err);
       });
   }
   removeNotice(notice: NoticeModel) {
     this.noticeBindingModel = notice;
-    this.isLoading = true;
+    this._global.isLoading = true;
     this._noticeService.removeNotice(this.noticeBindingModel).subscribe((result: any) => {
-      this.isLoading = false;
-      this.editMode = false;
-      this.creatorMode = false;
+      this._global.isLoading = false;
+      this._global.currentMode = ModeEnum.Buffer;
       this.getNotices();
       this.noticeBindingModel = new NoticeModel();
-      this._router.navigate(['homepage']);
+      this._router.navigate(['notices']);
     },
       (err: HttpErrorResponse) => {
-        this.isLoading = false;
+        this._global.isLoading = false;
         console.log(err);
       });
   }
   getNotices() {
-    this.isLoading = true;
+    this._global.isLoading = true;
     this._noticeService.getNotices().subscribe((result: any) => {
       this.listOfNotices = result;
-      this.isLoading = false;
+      this._global.isLoading = false;
+      this._global.currentMode = ModeEnum.Buffer;
     },
       (err: HttpErrorResponse) => {
-        this.isLoading = false;
+        this._global.isLoading = false;
         console.log(err);
       });
   }
 
+  get isLoading(): boolean {
+    return this._global.isLoading;
+  }
+  get currentMode() {
+    return this._global.currentMode;
+  }
+  set currentMode(value: number) {
+    this._global.currentMode = value;
+  }
   ngOnInit() {
-    this._authService.checkAccess();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._authService.checkAccess();
     if (this.listOfNotices.length <= 0) {
       this.getNotices();
     }

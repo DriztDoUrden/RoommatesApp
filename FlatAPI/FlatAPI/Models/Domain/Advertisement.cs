@@ -17,9 +17,16 @@ namespace FlatAPI.Models.Domain
         public string Content { get; set; }
         [Required]
         public string Author { get; set; }
+
         [Required]
-        public virtual Flat Flat { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        public int Flat_Id { get; set; }
+        [ForeignKey("Flat_Id")]
+        public Flat Flat { get; set; }
+
+        [Required]
+        public string User_Id { get; set; }
+        [ForeignKey("User_Id")]
+        public ApplicationUser User { get; set; }
 
     }
 }

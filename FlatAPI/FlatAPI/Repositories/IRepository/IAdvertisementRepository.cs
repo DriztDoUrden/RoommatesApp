@@ -9,7 +9,7 @@ namespace FlatAPI.Repositories.IRepository
     public interface IAdvertisementRepository
     {
         void CreateNotice(AdvertisementViewModel ad);
-        List<AdvertisementViewModel> GetNotices(string userID);
+        List<AdvertisementViewModel> GetNotices();
         void EditNotice(AdvertisementViewModel advertisement);
         void RemoveNotice(AdvertisementViewModel advertisement);
     }

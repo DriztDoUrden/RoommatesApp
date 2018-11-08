@@ -8,15 +8,10 @@ using FlatAPI.Models;
 
 namespace FlatAPI.Controllers
 {
-
+    [AllowAnonymous]
+    [RoutePrefix("api/values")]
     public class ValuesController : ApiController
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
         // GET api/values/5
         public string Get(int id)

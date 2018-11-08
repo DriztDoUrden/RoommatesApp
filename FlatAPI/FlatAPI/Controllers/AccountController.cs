@@ -20,6 +20,8 @@ using FlatAPI.Models;
 using FlatAPI.Models.Domain;
 using FlatAPI.Providers;
 using FlatAPI.Results;
+using System.Web.Http.Controllers;
+using System.Net;
 
 namespace FlatAPI.Controllers
 {
@@ -38,6 +40,15 @@ namespace FlatAPI.Controllers
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+        }
+
+
+        [HttpGet]
+        [Route("GetCurrentUser")]
+        public IHttpActionResult GetCurrentUser()
+        {
+            ApplicationUser user = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            return Ok(user);
         }
 
         public ApplicationUserManager UserManager
@@ -325,17 +336,29 @@ namespace FlatAPI.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+            var listOfErrors = new List<string>();
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                foreach (var models in ModelState.Values)
+                {
+                    foreach(var error in models.Errors)
+                    {
+                        listOfErrors.Add(error.ErrorMessage);
+                    }
+                }
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, listOfErrors));
             }
 
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            user.Color_Id = 9;
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                foreach(var error in result.Errors)
+                {
+                    listOfErrors.Add(error);
+                }
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, listOfErrors));
             }
 
             return Ok();

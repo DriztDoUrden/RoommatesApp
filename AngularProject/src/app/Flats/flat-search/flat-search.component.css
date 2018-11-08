@@ -28,10 +28,13 @@
 .media
 {
     padding:30px;
-    margin:1vh 7vw 1vh 7vw ;
+    margin:1vh 3vw 1vh 4vw ;
     border-radius: 20px;
-    width:35vw;
+    width:40vw;
     background:linear-gradient(rgb(0, 0, 0, 0.1),rgb(0, 0, 0, 0),rgb(0, 0, 0, 0),rgb(0, 0, 0, 0.1));
+}
+.media:hover{
+  background:linear-gradient(rgb(0, 0, 0, 0.3),rgb(0, 0, 0, 0),rgb(0, 0, 0, 0),rgb(0, 0, 0, 0.3));
 }
 .dp
 {
@@ -94,28 +97,7 @@ padding-top:1vh;
 text-align:center;
 font-size:18px;
 }
-.btn.btn-signin {
-  background-color: rgb(104, 145, 162);
-  /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-  padding: px;
-  font-weight: 700;
-  font-size: 14px;
-  height: 36px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: none;
-  -o-transition: all 0.218s;
-  -moz-transition: all 0.218s;
-  -webkit-transition: all 0.218s;
-  transition: all 0.218s;
-}
 
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-  background-color: rgb(12, 97, 33);
-}
 .movePanel.card-container {
 animation-name: example;
 animation-duration: 1.5s;
@@ -126,17 +108,16 @@ animation-fill-mode: forwards;
   0%   {left:0px;top:0vh;}
   25%  {left:-10vw;top:5vh;}
   50%  {left:-20vw;top:10vh;}
-  100% {left:-35vw;top:15vh;}
+  100% {left:-33vw;top:15vh;}
 }
 .scrollbar
 {
   overflow-y: scroll;
-overflow-x: hidden;
+  overflow-x: hidden;
   margin-bottom: 25px;
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-
 }
 /* width */
 ::-webkit-scrollbar {
@@ -158,4 +139,16 @@ overflow-x: hidden;
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgb(128, 128, 128, 0.9);
+}
+.emptyList{
+  font-size:6vh;
+  text-align:center;
+  color:rgb(255, 255, 255,-1);
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  margin: -50vh auto 0 39vw;
+  max-width: 50vw;
+  max-height:80vh;
 }

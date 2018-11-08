@@ -11,10 +11,10 @@
       <input [(ngModel)]="flatBindingModel.Address" [ngModelOptions]="{standalone:true}" id="inputAddress " class="form-control "
         placeholder="Address " required>
       <p></p>
-      <input [(ngModel)]="flatBindingModel.City" [ngModelOptions]="{standalone:true}" id="inputCity " class="form-control " placeholder="City "
-        required>
+      <input [(ngModel)]="flatBindingModel.City" [ngModelOptions]="{standalone:true}" id="inputCity " class="form-control "
+        placeholder="City " required>
       <p></p>
-      <button class="btn btn-lg btn-primary btn-block btn-signin " type="submit" (click)="searchFlat()">Create!</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="searchFlat()">Search!</button>
     </form>
     <!-- /form -->
     <div class="error ">
@@ -23,23 +23,32 @@
   <!-- /card-container -->
 </div>
 
-<div class="searchPanel scrollbar" *ngIf="searchListVisible==true" [ngClass]="{'movePanel': searchListVisible==true }">
-  <div *ngFor="let flat of listOfFlats" class="row">
-    <div class="col-lg-5">
-      <div class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object dp img-circle" src="https://vignette.wikia.nocookie.net/fantendo/images/6/6e/Small-mario.png/revision/latest?cb=20120718024112"
-            style="width: 100px;height:100px;">
-        </a>
-        <div class="media-body">
-          <h3 class="media-heading">{{flat.FlatName}}
-            <small> {{flat.City}} </small>
-          </h3>
-          <h4>{{flat.Address}}</h4>
-          <hr style="margin:8px auto">
-          <button class="btn btn-success" (click)='joinToFlat(flat.Id)'>JOIN</button>
+<div *ngIf="listOfFlats.length==0; else flatList">
+  <div class="emptyList">
+    List is empty ...<br>
+    <br>
+    Change searching parameters!
+  </div>
+</div>
+<ng-template #flatList>
+  <div class="searchPanel scrollbar" *ngIf="searchListVisible==true" [ngClass]="{'movePanel': searchListVisible==true }">
+    <div *ngFor="let flat of listOfFlats" class="row">
+      <div class="col-lg-5">
+        <div class="media">
+          <a class="pull-left">
+            <img class="media-object dp img-circle" src="https://vignette.wikia.nocookie.net/fantendo/images/6/6e/Small-mario.png/revision/latest?cb=20120718024112"
+              style="width: 100px;height:100px;">
+          </a>
+          <div class="media-body">
+            <h3 class="media-heading">{{flat.FlatName}}
+              <h5> {{flat.City}} </h5>
+            </h3>
+            <h4>{{flat.Address}}</h4>
+            <hr style="margin:8px auto">
+            <button class="btn-lg btn-success" (click)='joinToFlat(flat.Id)'>JOIN</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>

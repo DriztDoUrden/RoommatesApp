@@ -14,5 +14,6 @@ namespace FlatAPI.Repositories.IRepository
         List<Flat> SearchFlat(FlatViewModel flat);
         Flat GetFlatByID(int flatID);
         void SaveChanges();
+        Flat GetCurrentFlat();
     }
 }

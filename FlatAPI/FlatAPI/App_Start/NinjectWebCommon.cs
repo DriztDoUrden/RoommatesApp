@@ -47,6 +47,10 @@ namespace FlatAPI.App_Start
             kernel.Bind<IFlatsRepository>().To<FlatRepository>();
             kernel.Bind<IResidentsRepository>().To<ResidentsRepository>();
             kernel.Bind<IAdvertisementRepository>().To<AdvertisementRepository>();
+            kernel.Bind<IRentalFeesRepository>().To<RentalFeesRepository>();
+            kernel.Bind<ICleaningRepository>().To<CleaningRepository>();
+            kernel.Bind<IChatRepository>().To<ChatRepository>();
+            kernel.Bind<IEventsRepository>().To<EventsRepository>();
         }
     }
 }

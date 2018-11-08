@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from './Authorization/Authorization.service';
-import { UserLoginModel } from './Authorization/UserRegisterModel';
 import { ApplicationUser } from './Models/ApplicationUser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-root',

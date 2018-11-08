@@ -5,7 +5,9 @@
   background-image: url("./assets/background.jpg");
   filter: blur(0px);
   position:absolute;
-  background-size: 100% 100%;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-position:center;
   top:0;
   left:0;
   right:0;

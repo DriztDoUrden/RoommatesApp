@@ -28,15 +28,12 @@ export class FlatsInitPanelComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.authService.checkAccess();
-    let hasFlat = false;
-    this.residentService.checkResidentHasFlat().subscribe((data: any) => {
-      hasFlat = data;
-      if (hasFlat) {
-        this.router.navigate(['homepage']);
-        this.isLoading = false;
-      }
-    });
+    if (this.residentService.checkResidentHasFlat()) {
+      this.router.navigate(['flats']);
+      this.isLoading = false;
+    } else {
+      this.router.navigate(['flatInit']);
+    }
     setTimeout(() => { this.isLoading = false; }, 1500);
-
   }
 }

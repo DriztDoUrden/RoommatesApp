@@ -1,0 +1,20 @@
+.container {
+    background-color: #99CCFF;
+    border: thick solid #808080;
+    padding: 20px;
+    margin: 20px;
+}
+.chat{
+    background-color:rgb(0, 0, 0, 0.7);
+    border-radius:10px;
+    width:63vw;
+    height:73vh;
+    margin:0 auto;
+    position: relative;
+  }
+  .chatHeader{
+    text-align: center;
+    font-size:4vh;
+    color:rgba(255, 255, 255, 0.8);
+    user-select: none;
+  }

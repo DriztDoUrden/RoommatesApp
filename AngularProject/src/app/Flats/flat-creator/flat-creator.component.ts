@@ -30,7 +30,7 @@ export class FlatCreatorComponent implements OnInit {
     this.flatService.createFlat(flat).subscribe((data: any) => {
       this.isLoading = false;
       location.reload();
-      this.router.navigate(['homepage']);
+      this.router.navigate(['flats']);
     },
       (err: HttpErrorResponse) => {
         this.isLoading = false;

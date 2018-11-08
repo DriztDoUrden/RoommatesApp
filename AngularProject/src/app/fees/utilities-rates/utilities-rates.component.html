@@ -1,0 +1,43 @@
+<app-loading *ngIf="isLoading==true"></app-loading>
+<app-fees></app-fees>
+
+<div *ngIf="editorMode==false;else editor" class="utilitiesTable">
+  <!-- Default panel contents -->
+  <div class="panel-heading " style="border-radius:10px;height:8vh;">Utilities rates panel
+    <button (click)="editorMode=true" class="btn btn-danger addUtylityBtn">New utility</button>
+  </div>
+  <div class="panel-body" style="font-family:arial; color:white;">
+    <table class="table" style="font-weight:lighter; text-align:center;">
+      <thead>
+        <tr>
+          <th>Utility</th>
+          <th>Price per unit</th>
+          <th>Fixed charge</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let utility of listOfFlatUtilities">
+        <td>{{utility.Name}}</td>
+        <td>{{utility.Price}}$</td>
+        <td>{{utility.FixedCharge}}$</td>
+        <a (click)=" removeFlatUtility(utility) " style="float:left;margin-top:8px;color:red;font-weight:bold;cursor: pointer; ">X</a>
+      </tr>
+    </table>
+  </div>
+</div>
+<ng-template #editor>
+  <div class="utilitiesTable " style="font-family:arial;font-weight:lighter; ">
+    <!-- Default panel contents -->
+    <div class="panel-heading " style="border-radius:10px;height:8vh;text-align:center; ">Creator of utilities
+    </div>
+    <div class="panel-body" style=" text-align:center; ">
+      <input [(ngModel)]="utilityBindingModel.Name " [ngModelOptions]="{standalone:true} " class="inputField
+        " placeholder="Utility " required autofocus>
+      <input [(ngModel)]="utilityBindingModel.Price " [ngModelOptions]="{standalone:true} " id="price " class="inputField
+        " placeholder="Price per unit [$] " required autofocus type="number " step="0.01 ">
+      <input [(ngModel)]="utilityBindingModel.FixedCharge " [ngModelOptions]="{standalone:true} " class="inputField
+        " placeholder="Fixed charge [$] " required autofocus type="number " step="0.01 ">
+      <button (click)="createUtility() " class="btn btn-success addUtylityBtn " style="margin-top:35px">Create</button>
+    </div>
+  </div>
+
+</ng-template>

@@ -1,5 +1,20 @@
-<app-flats-homepage></app-flats-homepage>
+<div>
+  <app-flats-homepage></app-flats-homepage>
+</div>
 
-<p>
-  fees works!
-</p>
+<div class="col-md-2 column menu ">
+  <ul class="nav nav-pills nav-stacked">
+    <li>
+      <a (click)="redirectToUtilities()">
+        <span class="glyphicon glyphicon-chevron-right menuChoice"></span> Utilities rates</a>
+    </li>
+    <li>
+      <a (click)="redirectToBills()">
+        <span class=" glyphicon glyphicon-chevron-right menuChoice"></span> Bills table</a>
+    </li>
+    <li>
+      <a (click)="redirectToContributions()">
+        <span class="glyphicon glyphicon-chevron-right menuChoice"></span> Chip in</a>
+    </li>
+  </ul>
+</div>

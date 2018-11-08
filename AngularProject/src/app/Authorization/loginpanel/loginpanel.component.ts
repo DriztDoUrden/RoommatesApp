@@ -1,10 +1,11 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { UserLoginModel } from '../UserRegisterModel';
+import { UserLoginModel } from '../../Models/UserRegisterModel';
 import { AuthService } from '../Authorization.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { EventEmitter } from '@angular/core';
+import { HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApplicationUser } from '../../Models/ApplicationUser';
+import { GlobalService } from '../../Features/global.service';
+import { ValidatorService } from '../../Features/validator/validator.service';
 
 @Component({
   selector: 'app-loginpanel',
@@ -13,58 +14,76 @@ import { ApplicationUser } from '../../Models/ApplicationUser';
 })
 export class LoginpanelComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private _authService: AuthService, private router: Router, private _globalService: GlobalService) {
   }
 
   appUser = new UserLoginModel();
   loginMode = true;
-  isLoading = false;
-  httpResponse;
+  errorList: Array<String>;
+  isErrorMessageActive: boolean;
 
   ngOnInit() {
+    this._authService.getCurrentUser().subscribe(data => {
+      if (data != null) {
+        this.router.navigate(['flats']);
+      }
+    });
+    this.setLoading(false);
   }
-
   changeMode() {
     this.loginMode = !this.loginMode;
-    this.httpResponse = null;
   }
   register() {
-    this.isLoading = true;
+    this.setLoading(true);
     const user: UserLoginModel = ({
       Email: this.appUser.Email,
       Password: this.appUser.Password,
       ConfirmPassword: this.appUser.ConfirmPassword
     });
-    this.authService.registerUser(user).subscribe(data => {
+    this._authService.registerUser(user).subscribe(data => {
       console.log(data);
+      location.reload();
     },
       (err: HttpErrorResponse) => {
-        console.log('Register failure');
+        const errors = this._globalService.parseErrors(err.error);
+        console.log(errors);
+        this.errorList = errors;
         this.appUser.Password = '';
         this.appUser.ConfirmPassword = '';
-        this.isLoading = false;
+        this.setLoading(false);
       });
-    this.isLoading = false;
+    this.setLoading(false);
   }
   login() {
-    this.isLoading = true;
+    this.setLoading(true);
     const user: UserLoginModel = ({
       Email: this.appUser.Email,
       Password: this.appUser.Password,
       ConfirmPassword: this.appUser.ConfirmPassword
     });
-    this.authService.userAuthorization(user).subscribe((data: any) => {
+    this._authService.userAuthorization(user).subscribe((data: any) => {
       localStorage.setItem('userToken', data.access_token);
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      this.authService.setAuthorization();
-      this.isLoading = false;
-      this.router.navigate(['']);
+      this._authService.setAuthorization();
+      this._authService.getCurrentUser().subscribe((result: any) => {
+        const currentUser = new ApplicationUser(result.Email, result.Id, result.ScheduleColor);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      });
+      this.setLoading(false);
+      this.router.navigate(['flats']);
     },
       (err: HttpErrorResponse) => {
-        this.isLoading = false;
-        console.log('Login failure');
-        this.httpResponse = err.error.error_description;
+        this.errorList = new Array<string>();
+        this.setLoading(false);
+        this.errorList.push(err.error.error_description);
+        console.log(this.errorList);
         this.appUser.Password = '';
       });
   }
+  get isLoading(): boolean {
+    return this._globalService.isLoading;
+  }
+  setLoading(loading: boolean) {
+    this._globalService.isLoading = loading;
+  }
+
 }

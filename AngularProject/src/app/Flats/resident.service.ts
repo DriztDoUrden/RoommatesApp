@@ -14,15 +14,23 @@ export class ResidentService implements OnInit {
 
   private _residentInfo = 'http://localhost:51287/api/Residents/ResidentInfo';
   private _checkResidentFlat = 'http://localhost:51287/api/Residents/CheckResidentFlat';
+  private _getFlatMembers = 'http://localhost:51287/api/Residents/GetFlatMembers';
+
   constructor(private http: HttpClient, private router: Router) { }
 
-  currentResident: Observable<ResidentModel>;
 
-  getResidentInfo(): Observable<ResidentModel> {
+  getResidentInfo() {
     return this.http.get<ResidentModel>(this._residentInfo);
   }
   checkResidentHasFlat() {
-    return this.http.get<boolean>(this._checkResidentFlat);
+    this.http.get<boolean>(this._checkResidentFlat).subscribe(data => {
+      if (data === false) {
+        this.router.navigate(['flatInit']);
+      }
+    });
+  }
+  getFlatMembers() {
+    return this.http.get<Array<ApplicationUser>>(this._getFlatMembers);
   }
   ngOnInit(): void {
 

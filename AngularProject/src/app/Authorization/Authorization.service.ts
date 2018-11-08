@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserLoginModel } from './UserRegisterModel';
+import { UserLoginModel } from '../Models/UserRegisterModel';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { ApplicationUser } from '../Models/ApplicationUser';
 import { Router } from '@angular/router';
@@ -11,7 +11,8 @@ export class AuthService implements OnInit {
 
   private _registerUrl = 'http://localhost:51287/api/Account/Register';
   private _loginUrl = 'http://localhost:51287/token';
-  private _userInfoUrl = 'http://localhost:51287/api/Account/UserInfo';
+  private _getCurrentUser = 'http://localhost:51287/api/Account/GetCurrentUser';
+
 
   currentUser: BehaviorSubject<ApplicationUser>;
   user$: Observable<ApplicationUser>;
@@ -50,9 +51,15 @@ export class AuthService implements OnInit {
   }
   checkAccess() {
     const user: ApplicationUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (user == null) {
-      this.router.navigate(['login']);
+    if (user != null) {
+      if (user.Email.length < 1) {
+        this.router.navigate(['login']);
+      }
     }
+
+  }
+  getCurrentUser() {
+    return this.http.get(this._getCurrentUser);
   }
   ngOnInit(): void {
   }

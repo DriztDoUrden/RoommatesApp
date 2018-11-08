@@ -25,7 +25,7 @@ namespace FlatAPI.Controllers
             _flatContext = flatContext;
             _residentsContext = residentsContext;
         }
-
+    
         [HttpGet]
         [Route("ResidentInfo")]
         public async Task<IHttpActionResult> CurrentResidentInfo()
@@ -43,6 +43,14 @@ namespace FlatAPI.Controllers
 
             var hasFlat = _residentsContext.CheckResidentFlat(user.Id);
             return hasFlat;
+        }
+
+        [HttpGet]
+        [Route("GetFlatMembers")]
+        public IHttpActionResult GetFlatMembers()
+        {
+            var flatMembers = _residentsContext.GetCurrentFlatMembers();
+            return Ok(flatMembers);
         }
     }
 }

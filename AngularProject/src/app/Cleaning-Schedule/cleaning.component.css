@@ -1,0 +1,126 @@
+.calendar{
+  background-color:rgb(0, 0, 0, 0.7);
+  border-radius:10px;
+  width:63vw;
+  height:73vh;
+  margin:0 auto;
+  margin-left:10vw;
+}
+.days{
+  width:9vw;
+  height:5vh;
+  text-align:center;
+  color:white;
+  float:left;
+  margin-top:2vh;
+  user-select: none;
+}
+
+.day{
+  border-color:rgba(255, 255, 255, 0.8);
+  border:solid;
+  border-width:1px;
+  width:9vw;
+  user-select: none;
+  color:rgba(255, 255, 255, 0.9);
+  height:10vh;
+  text-align:center;
+  line-height: 12vh;
+  float:left;
+}
+
+.triangle{
+  width: 0; 
+  height: 0; 
+  position: relative;
+  border-left: 3vw solid transparent;
+  border-bottom: 6vh solid transparent;
+  height:10%;
+  bottom:calc(8vh + 1px);
+  left:calc(6vw - 2px);
+}
+.header{
+  text-align:center;
+  color:white;
+  user-select: none;
+  font-size:4vh;
+}
+
+.legend{
+  position:absolute;
+  background-color:rgb(0, 0, 0, 0.7);
+  border-radius:10px;
+  color:white;
+  width:18vw;
+  height:55vh;
+  margin-left:77.5vw;
+  margin-top:10vh;
+  text-align:center;
+}
+.legendHeader{
+  user-select: none;
+  font-size:3vh;
+  margin-top:1vh;
+  margin-bottom: 4vh;
+  
+}
+.userColor{
+  background-color:rgba(255, 5, 5, 0.7);
+  width:80%;
+  margin:0 auto;
+  margin-bottom:3vh;
+  border-radius:10px;
+}
+button:focus {outline:0;}
+
+.createSchedule{
+  color:white;
+  width:10vw;
+  position: absolute;
+  font-weight:bold;
+  bottom: 3vh;
+  right:3.9vw;
+  font-size:1vw;
+  height:6vh;
+  background-color:rgba(255, 5, 5, 0.7);
+}
+
+/*
+EDITOR/CREATOR PANEL STYLES
+*/
+.EditPanel{
+  background-color:rgba(0, 0, 0, 0.6);
+  max-width:30vw;
+  height:60vh;
+  margin: 0 auto;
+  border-radius:10px;
+  text-align:center;
+}
+.headerPanel{
+  text-align:center;
+  color:white;
+  font-size:4vh;
+  padding-top:2.5vh;
+}
+.headerImg{
+  width:120px;
+  margin: 0 auto;
+  display:block;
+}
+.inputPanel{
+  width:15vw;
+  margin-right:2vw;
+}
+.inputText{
+  color:white; 
+  display:inline-block; 
+  margin-right:1vw;
+  width:4vw;
+  text-align:left;
+}
+.sendBtn{
+  margin-top:3vh;
+  width:10vw;
+  height:5vh;
+  font-size:2.2vh;
+}

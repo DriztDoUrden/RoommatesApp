@@ -24,7 +24,6 @@ export class FlatSearchComponent implements OnInit {
     this.isLoading = true;
     console.log(this.flatBindingModel);
     this.flatService.searchFlat(this.flatBindingModel).subscribe((result: any) => {
-      console.log(this.listOfFlats);
       setTimeout(() => { this.isLoading = false; this.listOfFlats = result; }, 1500);
     },
       (err: HttpErrorResponse) => {
@@ -38,7 +37,7 @@ export class FlatSearchComponent implements OnInit {
     this.isLoading = true;
     this.flatService.joinToFlat(flatID).subscribe(data => {
       location.reload();
-      this.router.navigate(['homepage']);
+      this.router.navigate(['flats']);
     });
     this.isLoading = false;
   }

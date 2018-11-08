@@ -24,11 +24,19 @@ namespace FlatAPI.Repositories.Repository
             var resident = _context.Residents.FirstOrDefault(x => x.User.Id == residentID);
             return Mapper.Map<Residents, ResidentsViewModel>(resident);
         }
+
         public bool CheckResidentFlat(string residentID)
         {
             var isHomeless = _context.Residents.FirstOrDefault(x => x.User.Id == residentID);
             if (isHomeless == null) return false;
             else return true;
+        }
+
+        public List<ApplicationUser> GetCurrentFlatMembers()
+        {
+            var flatID = _context.GetCurrentFlatID();
+            var members = _context.Residents.Where(x => x.Flat.Id == flatID).Select(x => x.User).ToList();
+            return members;
         }
     }
 }

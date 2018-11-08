@@ -18,6 +18,13 @@ namespace FlatAPI.App_Start
             CreateMap<ResidentsViewModel, Residents>();
             CreateMap<Advertisement, AdvertisementViewModel>();
             CreateMap<AdvertisementViewModel, Advertisement>();
+            CreateMap<UtilitiesRates, UtilitiesRatesViewModel>();
+            CreateMap<UtilitiesRatesViewModel, UtilitiesRates>();
+            CreateMap<List<UtilitiesNumbers>, BillsViewModel>()
+                .ForMember(dest => dest.Utilities,
+                           opts => opts.MapFrom(src => src));
+            CreateMap<MessageViewModel, ChatMessage>();
+            CreateMap<ChatMessage, MessageViewModel>();
         }
     }
 }

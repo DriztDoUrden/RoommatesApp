@@ -1,0 +1,28 @@
+.menu{
+  background-color:rgba(0, 0, 0, 0.4);
+  width:200px;
+  min-width:200px;
+  color:white;
+  margin-top:100px;
+  border-radius: 0px 10px 10px 0px;
+  font-size:2.5vh;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  text-decoration: none;
+  background-color: transparent !important;
+  cursor: pointer;
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+}
+.menuChoice{
+  margin-top:2vh;
+  margin-bottom:2vh;
+}
