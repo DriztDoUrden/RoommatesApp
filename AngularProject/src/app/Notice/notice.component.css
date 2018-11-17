@@ -5,7 +5,6 @@
   margin-left:3vw;
 }
 
-
 .notice:hover{
   background-color:rgba(0, 0, 0, 0.5);
   color:rgba(255, 255, 255, 0.9);
@@ -155,8 +154,7 @@ font-size:18px;
   background-color: rgb(12, 97, 33);
 }
 .removeNotice{
-text-align:right;
-color:red;
+color:rgba(247, 6, 6, 0.8);
 font-size:18px;
 font-weight:bold;
 cursor: pointer;

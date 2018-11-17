@@ -20,7 +20,7 @@
           <td *ngFor="let utility of bill.Utilities">{{utility.Quantity}}</td>
           <td>{{sumUp(bill)}}$</td>
           <td>{{toPay(sumUp(bill))}}$</td>
-          <a (click)="removeBill(bill) " style="float:left;margin-top:8px;color:red;font-weight:bold;cursor: pointer; ">X</a>
+          <a (click)="removeBill(bill) " style="float:left;margin-top:8px;color:rgba(247, 6, 6, 0.8);font-weight:bold;cursor: pointer; ">X</a>
         </tr>
       </table>
     </div>

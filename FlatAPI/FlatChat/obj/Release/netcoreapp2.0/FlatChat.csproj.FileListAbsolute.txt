@@ -1,0 +1,11 @@
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\bin\Release\netcoreapp2.0\FlatChat.deps.json
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\bin\Release\netcoreapp2.0\FlatChat.runtimeconfig.json
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\bin\Release\netcoreapp2.0\FlatChat.runtimeconfig.dev.json
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\bin\Release\netcoreapp2.0\FlatChat.dll
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\bin\Release\netcoreapp2.0\FlatChat.pdb
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\obj\Release\netcoreapp2.0\FlatChat.csproj.CoreCompileInputs.cache
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\obj\Release\netcoreapp2.0\FlatChat.AssemblyInfoInputs.cache
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\obj\Release\netcoreapp2.0\FlatChat.AssemblyInfo.cs
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\obj\Release\netcoreapp2.0\FlatChat.dll
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\obj\Release\netcoreapp2.0\FlatChat.pdb
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatChat\obj\Release\netcoreapp2.0\FlatChat.csprojResolveAssemblyReference.cache

@@ -347,11 +347,29 @@
     <Compile Include="Migrations\201811041045545_Created Events Table.Designer.cs">
       <DependentUpon>201811041045545_Created Events Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811131628425_RelationShip table.cs" />
+    <Compile Include="Migrations\201811131628425_RelationShip table.Designer.cs">
+      <DependentUpon>201811131628425_RelationShip table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811131648153_RelationShip table rework.cs" />
+    <Compile Include="Migrations\201811131648153_RelationShip table rework.Designer.cs">
+      <DependentUpon>201811131648153_RelationShip table rework.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811151845271_Added CleaningScheduleNotes table.cs" />
+    <Compile Include="Migrations\201811151845271_Added CleaningScheduleNotes table.Designer.cs">
+      <DependentUpon>201811151845271_Added CleaningScheduleNotes table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811151850466_Alter CleaningScheduleNotes table - added userId.cs" />
+    <Compile Include="Migrations\201811151850466_Alter CleaningScheduleNotes table - added userId.Designer.cs">
+      <DependentUpon>201811151850466_Alter CleaningScheduleNotes table - added userId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Domain\CleaningScheduleNote.cs" />
     <Compile Include="Models\Domain\Events.cs" />
+    <Compile Include="Models\Domain\ObjectMembers.cs" />
     <Compile Include="Models\DTO\ChatViewModel.cs" />
     <Compile Include="Models\CleaningScheduleCalendar\Day.cs" />
     <Compile Include="Models\CleaningScheduleCalendar\Month.cs" />
@@ -372,6 +390,7 @@
     <Compile Include="Models\DTO\ResidentsViewModel.cs" />
     <Compile Include="Models\DTO\UtilitiesRatesViewModel.cs" />
     <Compile Include="Models\Enums\Modes.cs" />
+    <Compile Include="Models\Enums\ObjectsEnum.cs" />
     <Compile Include="Models\ValidationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -424,6 +443,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FlatAPI - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -516,6 +536,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811041045545_Created Events Table.resx">
       <DependentUpon>201811041045545_Created Events Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131628425_RelationShip table.resx">
+      <DependentUpon>201811131628425_RelationShip table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131648153_RelationShip table rework.resx">
+      <DependentUpon>201811131648153_RelationShip table rework.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811151845271_Added CleaningScheduleNotes table.resx">
+      <DependentUpon>201811151845271_Added CleaningScheduleNotes table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811151850466_Alter CleaningScheduleNotes table - added userId.resx">
+      <DependentUpon>201811151850466_Alter CleaningScheduleNotes table - added userId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

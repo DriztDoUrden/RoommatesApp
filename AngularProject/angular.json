@@ -38,6 +38,7 @@
                 }
               ],
               "optimization": true,
+              "baseHref": "./",
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,

@@ -27,7 +27,9 @@
     </div>
     <div *ngFor="let day of numberOfDays" class="day">
     </div>
-    <div *ngFor="let day of month.Days" class="day">
+    <div *ngFor="let day of month.Days" (mouseover)="day.Plus=true" (mouseleave)="day.Plus=false" class="day">
+      <div id="plusSelector" *ngIf="day.Plus===true" style="float:left; margin-top:15px;margin-left:5px;font-size:30px;cursor:pointer"
+        (click)="noticeCreator=true">+</div>
       {{day.DateNumber}}
       <div *ngIf="day.Color !== null;else emptyDay" class="triangle" [ngStyle]="{'border-bottom-color': 'rgba('+ day.Color.R +','+ day.Color.G +','+ day.Color.B +','+ day.Color.Alpha +')'}">
       </div>
@@ -35,6 +37,9 @@
         <div class="triangle" style="border-bottom-color:transparent;">
         </div>
       </ng-template>
+    </div>
+    <div id="noticeSelector" *ngIf="noticeCreator===true" class="noticeCreator">###
+
     </div>
   </div>
 </div>

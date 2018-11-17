@@ -17,8 +17,8 @@ export class FeesComponent implements OnInit {
   redirectToBills() {
     this._router.navigate([RoutesPaths.Bills]);
   }
-  redirectToContributions() {
-    this._router.navigate([RoutesPaths.Contributions]);
+  redirectToFees() {
+    this._router.navigate([RoutesPaths.Fees]);
   }
   ngOnInit() {
   }

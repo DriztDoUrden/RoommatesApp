@@ -19,7 +19,7 @@
         <td>{{utility.Name}}</td>
         <td>{{utility.Price}}$</td>
         <td>{{utility.FixedCharge}}$</td>
-        <a (click)=" removeFlatUtility(utility) " style="float:left;margin-top:8px;color:red;font-weight:bold;cursor: pointer; ">X</a>
+        <a (click)=" removeFlatUtility(utility) " style="float:left;margin-top:8px;color:rgba(247, 6, 6, 0.8);font-weight:bold;cursor: pointer; ">X</a>
       </tr>
     </table>
   </div>
@@ -31,11 +31,14 @@
     </div>
     <div class="panel-body" style=" text-align:center; ">
       <input [(ngModel)]="utilityBindingModel.Name " [ngModelOptions]="{standalone:true} " class="inputField
-        " placeholder="Utility " required autofocus>
+        "
+        placeholder="Utility " required autofocus>
       <input [(ngModel)]="utilityBindingModel.Price " [ngModelOptions]="{standalone:true} " id="price " class="inputField
-        " placeholder="Price per unit [$] " required autofocus type="number " step="0.01 ">
+        "
+        placeholder="Price per unit [$] " required autofocus type="number " step="0.01 ">
       <input [(ngModel)]="utilityBindingModel.FixedCharge " [ngModelOptions]="{standalone:true} " class="inputField
-        " placeholder="Fixed charge [$] " required autofocus type="number " step="0.01 ">
+        "
+        placeholder="Fixed charge [$] " required autofocus type="number " step="0.01 ">
       <button (click)="createUtility() " class="btn btn-success addUtylityBtn " style="margin-top:35px">Create</button>
     </div>
   </div>

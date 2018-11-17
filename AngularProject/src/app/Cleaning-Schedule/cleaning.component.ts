@@ -9,7 +9,8 @@ import { ApplicationUser } from '../Models/ApplicationUser';
 import { ModeEnum } from '../Features/ModeEnum';
 import { CleaningSchedule } from './Models/CleaningScheduleModel';
 import { Router } from '@angular/router';
-
+import { CleaningScheduleNotice } from './Models/CleaningScheduleNotice';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-cleaning',
   templateUrl: './cleaning.component.html',
@@ -26,6 +27,9 @@ export class CleaningComponent implements OnInit {
   public currentYear: number;
   public FlatMembers: Array<ApplicationUser>;
   public CleaningScheduleBindingModel = new CleaningSchedule();
+  public CleaningNoticeBindingModel = new CleaningScheduleNotice();
+  public plus = false;
+  public noticeCreator = false;
 
   constructor(private _router: Router, private _cleaningService: CleaningService,
     private _global: GlobalService, private _residentService: ResidentService) {
@@ -39,6 +43,17 @@ export class CleaningComponent implements OnInit {
     } else {
       this.GetMonth(1);
     }
+  }
+
+  CreateScheduleNotice() {
+    this._global.isLoading = true;
+    this._cleaningService.CreateScheduleNotice(this.CleaningNoticeBindingModel).subscribe(result => {
+      this._global.isLoading = false;
+    },
+      (err: HttpErrorResponse) => {
+        this._global.isLoading = false;
+        console.log(err);
+      });
   }
 
   CreateSchedule() {
@@ -120,6 +135,23 @@ export class CleaningComponent implements OnInit {
     this.currentMonth = new Date().getMonth();
     this.GetMonth(0);
     this._global.currentMode = 0;
+
+    $(document).click(this.funkcja);
+  }
+  funkcja(e: any) {
+    const container = document.getElementById('noticeSelector');
+    const plus = document.getElementById('plusSelector');
+    if (container !== null && !container.contains(e.target)) {
+      container.hidden = true;
+      if (plus != null && plus.contains(e.target)) {
+        container.hidden = false;
+        container.style.position = 'absolute';
+        container.style.left = e.clientX + 'px';
+        container.style.bottom = e.clientY + 'px';
+
+      }
+    }
   }
 }
+
 

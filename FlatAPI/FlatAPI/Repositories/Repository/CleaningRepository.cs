@@ -25,6 +25,13 @@ namespace FlatAPI.Repositories.Repository
             _context.SaveChanges();
         }
 
+        public void CreateScheduleNote(CleaningScheduleNote note)
+        {
+            note.User_Id = _context.GetCurrentUserID();
+            note.Flat_Id = _context.GetCurrentFlatID();
+
+        }
+
         public Month GetMonth(int year, int month)
         {
             var startDate = new DateTime(year, month, 1);

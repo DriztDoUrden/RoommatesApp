@@ -59,6 +59,7 @@ namespace FlatAPI.Repositories.Repository
             _context.UtilitiesRates.Remove(utility);
             SaveChanges();
         }
+
         public void RemoveBill(BillsViewModel model)
         {
             var idsList = model.Utilities.Select(x => x.Id).ToList();
@@ -110,6 +111,12 @@ namespace FlatAPI.Repositories.Repository
             SaveChanges();
 
         }
+
+        public void CreateTip()
+        {
+
+        }
+
         private List<UtilitiesRates> GetCurrentUtilities()
         {
             var currentFlatID = _context.GetCurrentFlatID();

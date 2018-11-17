@@ -22,10 +22,11 @@ namespace FlatAPI.Models
         public DbSet<UtilitiesRates> UtilitiesRates { get; set; }
         public DbSet<UtilitiesNumbers> UtilitiesNumbers { get; set; }
         public DbSet<CleaningSchedule> CleaningSchedule { get; set; }
+        public DbSet<CleaningScheduleNote> CleaningScheduleNotes { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<Events> Events { get; set; }
-
+        public DbSet<ObjectMembers> ObjectMembers { get; set; }
 
         public static ApplicationDbContext Create()
         {
