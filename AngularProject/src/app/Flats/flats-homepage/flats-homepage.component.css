@@ -22,7 +22,6 @@
 }
 .handPointer{
   cursor: pointer;
-  text-align:center;
 }
 .verticalDivider{
   border-left:1px solid #16222c;
@@ -62,4 +61,8 @@
 }
 .menuElement{
   width:100px;
+}
+.fontRaleway{
+  font-weight:normal;
+  font-family: 'Raleway';
 }

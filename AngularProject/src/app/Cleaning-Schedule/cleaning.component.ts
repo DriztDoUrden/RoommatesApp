@@ -11,6 +11,7 @@ import { CleaningSchedule } from './Models/CleaningScheduleModel';
 import { Router } from '@angular/router';
 import { CleaningScheduleNotice } from './Models/CleaningScheduleNotice';
 import * as $ from 'jquery';
+import { Day } from './Models/Day';
 @Component({
   selector: 'app-cleaning',
   templateUrl: './cleaning.component.html',
@@ -27,7 +28,7 @@ export class CleaningComponent implements OnInit {
   public currentYear: number;
   public FlatMembers: Array<ApplicationUser>;
   public CleaningScheduleBindingModel = new CleaningSchedule();
-  public CleaningNoticeBindingModel = new CleaningScheduleNotice();
+  public CleaningNoticeBindingModel = new CleaningScheduleNotice(null, null);
   public plus = false;
   public noticeCreator = false;
 
@@ -44,18 +45,6 @@ export class CleaningComponent implements OnInit {
       this.GetMonth(1);
     }
   }
-
-  CreateScheduleNotice() {
-    this._global.isLoading = true;
-    this._cleaningService.CreateScheduleNotice(this.CleaningNoticeBindingModel).subscribe(result => {
-      this._global.isLoading = false;
-    },
-      (err: HttpErrorResponse) => {
-        this._global.isLoading = false;
-        console.log(err);
-      });
-  }
-
   CreateSchedule() {
     this._global.isLoading = true;
     const selectedUser = (document.getElementById('userPicker') as HTMLInputElement).value;
@@ -70,7 +59,6 @@ export class CleaningComponent implements OnInit {
       });
     location.reload();
   }
-
   GetPreviousMonth() {
     if (this.currentMonth === 0) {
       this.currentDate.setFullYear(this.currentDate.getFullYear() - 1);
@@ -94,7 +82,6 @@ export class CleaningComponent implements OnInit {
         console.log(err);
       });
   }
-
   GetFlatMembers() {
     this._residentService.getFlatMembers().subscribe((result: Array<ApplicationUser>) => {
       this.FlatMembers = result;
@@ -106,12 +93,10 @@ export class CleaningComponent implements OnInit {
         console.log(err);
       });
   }
-
   enableCreator() {
     this._global.isLoading = true;
     setTimeout(() => { this._global.isLoading = false; this._global.currentMode = ModeEnum.Edit; }, 500);
   }
-
   calculateNumberOfDays() {
     const days = this.month.StartDay;
     const daysArray = new Array<number>();
@@ -119,6 +104,35 @@ export class CleaningComponent implements OnInit {
       daysArray.push(_i);
     }
     this.numberOfDays = daysArray;
+  }
+  ShowDetails(day: Day) {
+    day.Plus = true;
+    day.Notice = true;
+  }
+  HideDetails(day: Day) {
+    day.Plus = false;
+    day.Notice = false;
+  }
+  ShowNotice(day: Day) {
+    this.noticeCreator = true;
+    this.CleaningNoticeBindingModel = new CleaningScheduleNotice(day.NoticeContent, day.Date);
+  }
+  createNotice(day: Day) {
+    this.noticeCreator = true;
+    this.CleaningNoticeBindingModel = new CleaningScheduleNotice(null, day.Date);
+  }
+  SaveScheduleNotice(notice: String) {
+    this._global.isLoading = true;
+    this._cleaningService.CreateScheduleNotice(this.CleaningNoticeBindingModel).subscribe(result => {
+      this.ReloadDay(this.CleaningNoticeBindingModel);
+      this._global.isLoading = false;
+      this.noticeCreator = false;
+      this.CleaningNoticeBindingModel = new CleaningScheduleNotice(null, null);
+    },
+      (err: HttpErrorResponse) => {
+        this._global.isLoading = false;
+        console.log(err);
+      });
   }
   get isLoading(): boolean {
     return this._global.isLoading;
@@ -129,6 +143,9 @@ export class CleaningComponent implements OnInit {
   get currentMode() {
     return this._global.currentMode;
   }
+  ReloadDay(notice: CleaningScheduleNotice) {
+    this.month.Days.find(x => x.Date === notice.Date).NoticeContent = notice.Content;
+  }
 
   ngOnInit() {
     this.GetFlatMembers();
@@ -136,19 +153,27 @@ export class CleaningComponent implements OnInit {
     this.GetMonth(0);
     this._global.currentMode = 0;
 
-    $(document).click(this.funkcja);
+    $(document).click(this.clickListener);
+    document.onkeydown = this.escapeListener;
   }
-  funkcja(e: any) {
-    const container = document.getElementById('noticeSelector');
+  escapeListener(e: any) {
+    const noticeContainer = document.getElementById('notice');
+    if (e.key === 'Escape') {
+      noticeContainer.hidden = true;
+    }
+  }
+  clickListener(e: any) {
+    const noticeContainer = document.getElementById('notice');
     const plus = document.getElementById('plusSelector');
-    if (container !== null && !container.contains(e.target)) {
-      container.hidden = true;
-      if (plus != null && plus.contains(e.target)) {
-        container.hidden = false;
-        container.style.position = 'absolute';
-        container.style.left = e.clientX + 'px';
-        container.style.bottom = e.clientY + 'px';
+    const notice = document.getElementById('noticeSelector');
 
+    if (noticeContainer !== null && !noticeContainer.contains(e.target)) {
+      noticeContainer.hidden = true;
+      if ((plus != null && plus.contains(e.target)) || (notice != null && notice.contains(e.target))) {
+        noticeContainer.hidden = false;
+        noticeContainer.style.position = 'absolute';
+        noticeContainer.style.left = e.clientX + 20 + 'px';
+        noticeContainer.style.top = e.clientY - noticeContainer.clientHeight + 'px';
       }
     }
   }

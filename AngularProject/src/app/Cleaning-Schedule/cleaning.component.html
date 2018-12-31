@@ -25,12 +25,14 @@
     <div *ngFor="let i of days" class="days">
       {{i}}
     </div>
-    <div *ngFor="let day of numberOfDays" class="day">
+    <div *ngFor="let day of numberOfDays" class="dayEmpty">
     </div>
-    <div *ngFor="let day of month.Days" (mouseover)="day.Plus=true" (mouseleave)="day.Plus=false" class="day">
-      <div id="plusSelector" *ngIf="day.Plus===true" style="float:left; margin-top:15px;margin-left:5px;font-size:30px;cursor:pointer"
-        (click)="noticeCreator=true">+</div>
-      {{day.DateNumber}}
+    <div *ngFor="let day of month.Days" (mouseover)="ShowDetails(day)" (mouseleave)="HideDetails(day)" class="day">
+      <div id="plusSelector" *ngIf="day.Plus===true && day.NoticeContent===null" style="float:left; margin-top:15px;margin-left:2px;font-size:5vh;cursor:pointer;color:black; position:absolute"
+        (click)="createNotice(day)">+</div>
+      <div id="noticeSelector" *ngIf="day.NoticeContent!==null && day.Notice===true" style="float:left; margin-top:7vh;margin-left:2px;font-size:30px;cursor:pointer"><img
+          class="noticeImg" src="../../../assets/images/note.png " (click)="ShowNotice(day)" /></div>
+      <p class="dayNumber">{{day.DateNumber}}</p>
       <div *ngIf="day.Color !== null;else emptyDay" class="triangle" [ngStyle]="{'border-bottom-color': 'rgba('+ day.Color.R +','+ day.Color.G +','+ day.Color.B +','+ day.Color.Alpha +')'}">
       </div>
       <ng-template #emptyDay>
@@ -38,8 +40,10 @@
         </div>
       </ng-template>
     </div>
-    <div id="noticeSelector" *ngIf="noticeCreator===true" class="noticeCreator">###
-
+    <div id="notice" *ngIf="noticeCreator===true" class="noticeCreator">
+      <textarea [(ngModel)]="CleaningNoticeBindingModel.Content" [ngModelOptions]="{standalone:true} " class="form-control noticeContent"
+        placeholder="Create new note ..." required></textarea>
+      <button class="btn btn-success SaveScheduleNotice" (click)="SaveScheduleNotice()">Save notice</button>
     </div>
   </div>
 </div>

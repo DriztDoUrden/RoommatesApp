@@ -17,5 +17,6 @@ namespace FlatAPI.Models.CleaningScheduleCalendar
             }
         }
         public Color Color { get; set; }
+        public string NoticeContent { get; set; }
     }
 }

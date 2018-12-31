@@ -18,14 +18,9 @@ namespace FlatAPI.Controllers
     public class NoticesController : ApiController
     {
         private readonly IAdvertisementRepository _advertisementContext;
-        private readonly IFlatsRepository _flatContext;
-        private readonly IResidentsRepository _residentsContext;
 
-        public NoticesController(IFlatsRepository flatContext, IResidentsRepository residentsContext
-            ,IAdvertisementRepository advertisementContext)
+        public NoticesController(IAdvertisementRepository advertisementContext)
         {
-            _flatContext = flatContext;
-            _residentsContext = residentsContext;
             _advertisementContext = advertisementContext;
         }
 

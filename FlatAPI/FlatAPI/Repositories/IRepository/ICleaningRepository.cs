@@ -11,5 +11,6 @@ namespace FlatAPI.Repositories.IRepository
     {
         Month GetMonth(int year, int month);
         void CreateSchedule(CleaningSchedule model);
+        void CreateScheduleNote(CleaningScheduleNote note);
     }
 }

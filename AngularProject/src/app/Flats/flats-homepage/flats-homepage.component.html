@@ -1,6 +1,6 @@
 <app-loading *ngIf="isLoading==true"></app-loading>
 <nav class="navbar navbar-expand-md barBackground" style="min-height: 52px !important;">
-  <div class="navbar-collapse collapse w-100 ">
+  <div class="navbar-collapse collapse w-100">
     <ul class="navbar-nav">
       <img src="../../../assets/images/RLogo.png" style="width: 50px !important;height:50px; margin-right:-2vw; margin-left:-2vw;">
       <li class="verticalDivider"></li>
@@ -26,6 +26,8 @@
       <li class="verticalDivider"></li>
     </ul>
   </div>
+
+
   <div class="mx-auto order-0">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
       <span class="navbar-toggler-icon"></span>
@@ -35,7 +37,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="dropdown">
         <a *ngIf="currentUser!==null" class="dropdown-toggle" data-toggle="dropdown">{{(currentUser)?.Email}}
-          <span class="glyphicon glyphicon-user pull-right"></span>
+          <span class="glyphicon glyphicon-user pull-right handPointer"></span>
         </a>
         <ul class="dropdown-menu">
           <li>

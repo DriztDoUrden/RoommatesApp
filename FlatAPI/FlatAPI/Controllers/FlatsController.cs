@@ -23,12 +23,10 @@ namespace FlatAPI.Controllers
     public class FlatsController : ApiController
     {
         private readonly IFlatsRepository _flatContext;
-        private readonly IResidentsRepository _residentsContext;
 
-        public FlatsController(IFlatsRepository flatContext, IResidentsRepository residentsContext)
+        public FlatsController(IFlatsRepository flatContext)
         {
             _flatContext = flatContext;
-            _residentsContext = residentsContext;
         }
 
         [HttpPost]
@@ -66,11 +64,6 @@ namespace FlatAPI.Controllers
             var flats = _flatContext.SearchFlat(model);
             var flatsVM = Mapper.Map<List<Flat>, List<FlatViewModel>>(flats);
             return Ok(flatsVM);
-        }
-
-        public string Get(int id)
-        {
-            return "value";
         }
 
     }

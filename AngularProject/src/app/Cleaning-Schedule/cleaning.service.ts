@@ -12,7 +12,7 @@ export class CleaningService {
 
   private _getMonthDays = 'http://localhost:51287/api/cleaning/GetMonth';
   private _createSchedule = 'http://localhost:51287/api/cleaning/CreateSchedule';
-  private _createScheduleNotice = 'http://localhost:51287/api/cleaning/CreateSchedule';
+  private _createScheduleNotice = 'http://localhost:51287/api/cleaning/CreateScheduleNote';
 
   constructor(private http: HttpClient) { }
 

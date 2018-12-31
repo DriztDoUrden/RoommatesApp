@@ -44,6 +44,7 @@ namespace FlatAPI.Controllers
         [Route("CreateScheduleNote")]
         public IHttpActionResult CreateScheduleNote(CleaningScheduleNote note)
         {
+            _cleaningRepository.CreateScheduleNote(note);
             return Ok();
         }
     }

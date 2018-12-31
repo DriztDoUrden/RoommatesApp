@@ -29,7 +29,8 @@ namespace FlatAPI.Repositories.Repository
         {
             note.User_Id = _context.GetCurrentUserID();
             note.Flat_Id = _context.GetCurrentFlatID();
-
+            _context.CleaningScheduleNotes.Add(note);
+            _context.SaveChanges();
         }
 
         public Month GetMonth(int year, int month)
@@ -51,7 +52,17 @@ namespace FlatAPI.Repositories.Repository
             }
             months.StartDay = (int)(months.Days.First().Date.DayOfWeek + 6) % 7;
             FillColor(months,year);
+            FillNotices(months, month);
             return months;
+        }
+
+        private void FillNotices(Month month, int monthNumber)
+        {
+            var notices = _context.CleaningScheduleNotes.Where(x => x.Date.Month == monthNumber).ToList();
+            foreach(var notice in notices)
+            {
+                month.Days.Single(x => x.Date == notice.Date).NoticeContent = notice.Content;
+            }
         }
 
         private List<DateTime> GetDaysFromRange(DateTime start, DateTime end)

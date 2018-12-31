@@ -171,3 +171,6 @@ C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migra
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.RelationShiptablerework.resources
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.AddedCleaningScheduleNotestable.resources
 C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\obj\Debug\FlatAPI.Migrations.AlterCleaningScheduleNotestableaddeduserId.resources
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\nunit.framework.dll
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\nunit.framework.pdb
+C:\Users\Kijwoku\Desktop\FlatApplication\FlatAPI\FlatAPI\bin\nunit.framework.xml

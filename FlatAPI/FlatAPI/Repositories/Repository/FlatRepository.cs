@@ -81,8 +81,5 @@ namespace FlatAPI.Repositories.Repository
             var user = _context.Users.FirstOrDefault(x => x.Id == userID);
             return user;
         }
-
-
-
     }
 }

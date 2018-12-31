@@ -4,5 +4,7 @@ export class Day {
     Date: Date;
     DayNumber: number;
     Color: Color;
-    Plus: false;
+    Plus: boolean;
+    Notice: boolean;
+    NoticeContent: String;
 }

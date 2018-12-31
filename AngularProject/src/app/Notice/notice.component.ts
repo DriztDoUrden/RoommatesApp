@@ -34,7 +34,6 @@ export class NoticeComponent implements OnInit {
         this._global.isLoading = false;
         console.log(err);
       });
-
   }
   enableEditor(notice: NoticeModel) {
     this._global.currentMode = ModeEnum.Edit;

@@ -69,9 +69,7 @@ export class ChatComponent implements OnInit {
             this.messagesList.push(mes);
             this.messageModel = new Msg();
         });
-
         this.connection.start()
-
             .catch(er => {
                 console.log(er);
             });

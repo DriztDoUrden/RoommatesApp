@@ -44,10 +44,10 @@
           placeholder="Author " required>
         <p></p>
         <div *ngIf="currentMode==1">
-          <button class="btn btn-lg btn-success btn-block" type="button " (click)="createNotice() ">Create!</button>
+          <button class="btn btn-lg btn-success btn-block" style="margin-bottom:20px;" type="button " (click)="createNotice() ">Create!</button>
         </div>
         <div *ngIf="currentMode==2;">
-          <button class="btn btn-lg btn-warning btn-block" type="button " (click)="editNotice() ">Edit!</button>
+          <button class="btn btn-lg btn-warning btn-block" style="margin-bottom:20px;" type="button " (click)="editNotice() ">Edit!</button>
         </div>
       </form>
     </div>
